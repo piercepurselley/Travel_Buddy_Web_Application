@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Wish List</title>
+    </head>
+    <body>
+        <a href="/logout">Logout</a>
+        <h1>Hello, {{user.first_name}}</h1>
+        <p>Your Wish List:</p>
+        <table>
+                <th>Item</th>
+                <th>Added By</th>
+                <th>Date Added</th>
+                <th>Action </th>
+                {% for product in products %}
+                <tr>
+                    <td><a href="item/{{product.id}}">{{product.item}}</a></td>
+                    <!-- THIS BELOW SUCKS -->
+                    <td>{{product.uploader.first_name}}</td>
+                    <td>{{product.created_at}}</td>
+                    <td><a href="delete/{{product.id}}">Remove from my Wishlist</a></td>
+                </tr>
+                {% endfor %}
+        </table>
+                <!-- Break between Wish Lists -->
+        <p>Other User's Wish List:</p>
+        <table>
+                <th>Item</th>
+                <th>Added By</th>
+                <th>Date Added</th>
+                <th>Action </th>
+                {% for product in products %}
+                <tr>
+                    <td><a href="item/{{product.id}}">{{product.item}}</a></td>
+                    <!-- THIS BELOW SUCKS -->
+                    <td>{{product.uploader.first_name}}</td>
+                    <td>{{product.created_at}}</td>
+                    <!-- THIS BELOW SUCKS -->
+                    <td><a href="add_item/{{product.id}}">Add to my Wishlist</a></td>
+                </tr>
+                {% endfor %}
+        </table>
+        <br>
+        <a href="/create">Add Item</a>
+    </body>
+</html>
